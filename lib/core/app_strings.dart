@@ -7,5 +7,6 @@ class AppStrings {
   static const String bomberJacket="Bomber Jacket";
   static const String swipeDetails="Swipe up for details";
   static const String priceJacket="49.99 EUR";
+  static const String shopNow="Shop Now";
 
 }

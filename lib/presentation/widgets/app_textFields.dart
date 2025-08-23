@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatefulWidget {
   final String hintText;
   final TextEditingController controller;
+  final Function(String)? onChange;
+  final Widget? prefixIcon;
 
   const CustomTextField({
     required this.hintText,
     required this.controller,
+    required this.onChange,
+    required this.prefixIcon
   });
 
   @override
