@@ -6,6 +6,10 @@ import 'package:e_commerce_figma/presentation/features/home/widgets/categories_l
 import 'package:e_commerce_figma/presentation/features/home/widgets/home_offer.dart';
 import 'package:e_commerce_figma/presentation/features/home/widgets/home_welcome_header.dart';
 import 'package:e_commerce_figma/presentation/features/home/widgets/home_welcome_row.dart';
+import 'package:e_commerce_figma/presentation/features/products/controller/product_controller.dart';
+import 'package:e_commerce_figma/presentation/features/products/view/product_details.dart';
+import 'package:e_commerce_figma/presentation/features/products/view/products_screen.dart';
+import 'package:e_commerce_figma/presentation/features/products/view/widgets/product_item_card.dart';
 import 'package:e_commerce_figma/presentation/widgets/app_textFields.dart';
 
 import 'package:flutter/material.dart';
@@ -21,6 +25,7 @@ class HomePage extends StatefulWidget {
 
 class _HomeScreenState extends State<HomePage> {
   final TextEditingController field = TextEditingController();
+  final ProductController productListController = ProductController();
   
 
  bool isLoading = true;
@@ -28,6 +33,20 @@ class _HomeScreenState extends State<HomePage> {
   List<Product> products = [];
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadData();
+  }
+
+  Future<void> loadData() async {
+    final results = await productListController.getProducts();
+
+    setState(() {
+      products = results;
+      isLoading = false;
+    });
+  }
 
   
   @override
@@ -60,7 +79,15 @@ class _HomeScreenState extends State<HomePage> {
             const OffersCard(),
 
             const CategoriesList(),
-
+            
+             isLoading
+                ? Center(child: CircularProgressIndicator())
+                : Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  //
+                  children: products.map((e) => ProductItemCard(product: e)).toList(),
+                ),
             
           ],
         ),

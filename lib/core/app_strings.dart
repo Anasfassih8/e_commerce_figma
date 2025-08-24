@@ -8,5 +8,11 @@ class AppStrings {
   static const String swipeDetails="Swipe up for details";
   static const String priceJacket="49.99 EUR";
   static const String shopNow="Shop Now";
-
+  static const String subtotal="total price";
+  static const String swipeUpForDetails="Swipe Up for details";
+  static const String continueText="Continue";
+  static const String products = 'Products';
+  static const String cart = 'cart';
+  static const String checkOut = 'check out';
+  
 }
